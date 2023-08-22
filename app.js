@@ -13,7 +13,7 @@ const sketch = () => {
 
     context.fillStyle = "black";
 
-    /// Placing the box on the canvas
+    ///=== Placing the box on the canvas ===//
     const u = width * 0.5;
     const v = height * 0.5;
     // Change shapes of the boxes
@@ -21,8 +21,8 @@ const sketch = () => {
     const h = height * 0.1;
     let x, y;
 
-    //Numbers of copies of the shape
-    const num = 20;
+    //==== Numbers of copies of the shape ===//
+    const num = 40;
     /// radius of the circle
     const radius = width * 0.3;
 
@@ -38,11 +38,30 @@ const sketch = () => {
       /// Changing position of our box
       context.translate(x, y);
       context.rotate(-angle);
-      context.scale(random.range(1, 3), 1);
+      context.scale(random.range(1, 3), random.range(0.2, 0.5));
 
       context.beginPath();
-      context.rect(-w * 0.5, -h * 0.5, w, h);
+      context.rect(-w * 0.5, random.range(1, -h * 0.5), w, h);
       context.fill();
+      context.restore();
+
+      ///==== Create an arc (incomplete circle) ====//
+      context.save();
+      context.translate(u, v);
+      context.rotate(-angle);
+
+      /// Make the arc thicker
+      context.lineWidth = random.range(6, 30);
+
+      context.beginPath();
+      context.arc(
+        0,
+        0,
+        radius * random.range(0.7, 1.3),
+        slice * random.range(1, -8),
+        slice * random.range(2, 10)
+      );
+      context.stroke();
       context.restore();
     }
   };
