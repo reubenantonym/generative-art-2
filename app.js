@@ -1,5 +1,6 @@
-const canvasSketch = require("canvas-sketch");
-const { degToRad } = require("canvas-sketch-util/math");
+import canvasSketch from "canvas-sketch";
+import random from "canvas-sketch-util/random";
+import math from "canvas-sketch-util/math";
 
 const settings = {
   dimensions: [2048, 2048],
@@ -27,7 +28,7 @@ const sketch = () => {
 
     for (let i = 0; i < num; i++) {
       // Cutting angles into pieces
-      const slice = degToRad(360 / num);
+      const slice = math.degToRad(360 / num);
       const angle = slice * i;
 
       x = u + radius * Math.sin(angle);
@@ -37,6 +38,7 @@ const sketch = () => {
       /// Changing position of our box
       context.translate(x, y);
       context.rotate(-angle);
+      context.scale(random.range(1, 3), 1);
 
       context.beginPath();
       context.rect(-w * 0.5, -h * 0.5, w, h);
