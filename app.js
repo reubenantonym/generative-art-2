@@ -10,14 +10,18 @@ const sketch = () => {
     context.fillRect(0, 0, width, height);
 
     context.fillStyle = "black";
+    /// Placing the box on the canvas
+    const x = width * 0.5;
+    const y = height * 0.5;
+    const w = width * 0.3;
+    const h = height * 0.3;
 
-    const x = 0;
-    const y = 0;
-    const w = width * 0.5;
-    const h = height * 0.5;
+    /// Changing position of  our box
+    context.translate(x, y);
+    context.rotate(0.3);
 
     context.beginPath();
-    context.rect(x, y, w, h);
+    context.rect(-w * 0.5, -h * 0.5, w, h);
     context.fill();
   };
 };
